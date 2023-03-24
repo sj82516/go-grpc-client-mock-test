@@ -1,0 +1,9 @@
+[user]
+email = sj82516@gmail.com
+name = yuanchieh
+ 
+[github]
+user = "sj82516"
+ 
+[core]
+sshCommand = "ssh -i ~/.ssh/sj82516"
