@@ -3,6 +3,7 @@ package client
 import (
     "context"
     "fmt"
+    "time"
     
     pb "mock-grpc/proto"
     
@@ -14,7 +15,10 @@ type Client struct {
 }
 
 func NewClient(grpcHost string) *Client {
-    conn, err := grpc.Dial(grpcHost, grpc.WithInsecure(), grpc.WithBlock())
+    ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+    defer cancel()
+    
+    conn, err := grpc.DialContext(ctx, grpcHost, grpc.WithInsecure(), grpc.WithBlock())
     if err != nil {
         fmt.Println("did not connect: ", err)
     }
